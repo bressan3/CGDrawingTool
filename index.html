@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CGDrawingTool</title>
+	<meta charset="UTF-8">
+</head>
+<body>
+
+	<script id="vertex-shader" type="x-shader/x-vertex">
+		attribute vec4 vPosition;
+		void main() {
+			gl_Position = vPosition;
+		}
+	</script>
+
+	<script id="fragment-shader" type="x-shader/x-fragment">
+	   	precision mediump float;
+	   	void main() {
+	    	gl_FragColor = vec4( 1, 0.0, 0.0, 1.0 );
+	   	}
+	</script>
+
+	<div style="float:left;"> 
+		<select>
+	  		<option value="connected">Connected</option>
+	  		<option value="disconnected">Disconnected</option>
+	  	</select>
+	  	<div>
+	  		R:<input type="number" id="r" min="0" max="255"/>
+	  		G:<input type="number" id="g" min="0" max="255"/>
+	  		B:<input type="number" id="b" min="0" max="255"/>
+	  		A:<input type="number" id="a" min="0" max="255"/>
+	  	</div>
+	  	<div>
+	  		Show Vertices: <input type="checkbox" id="ShowVertices"/>
+	  		Show Grid Lines: <input type="checkbox" id="ShowGrid"/>
+	  	</div>
+	  	<div>
+	  		Save File: <input type="text" id="fileName"/>
+	  		<input type="button" id="save" value="save"/>
+	  	</div>
+	  	<div>
+	  		Load File: <input type="button" id="choseFile"/>
+	  		<p id="chosenFile">No file chosen</p>
+	  	</div>
+	  	<div style="border:solid;">
+	  		<p>Vertex Propreties:</p>
+	  		<p>Coordinates: <input type="number" id="coordX"/><input type="number" id="coordY"/></p>
+	  		<p>
+	  			Color: <input type="number" id="r" min="0" max="255"/>
+	  					<input type="number" id="g" min="0" max="255"/>
+	  					<input type="number" id="b" min="0" max="255"/>
+			</p>
+	  	</div>
+	</div>
+
+	<canvas style="border:solid; position:absolute; left:400px;" width="625" height="625"></canvas>
+
+</body>
+</html>
