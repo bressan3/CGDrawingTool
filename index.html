@@ -1,60 +1,91 @@
-<!DOCTYPE html>
 <html>
 <head>
 	<title>CGDrawingTool</title>
 	<meta charset="UTF-8">
-</head>
-<body>
 
 	<script id="vertex-shader" type="x-shader/x-vertex">
 		attribute vec4 vPosition;
+		attribute vec4 gPosition;
+		attribute vec4 vColor;
+		varying vec4 fColor;
+
 		void main() {
+			gl_PointSize = 12.0;
 			gl_Position = vPosition;
+			fColor = vColor; 
 		}
 	</script>
 
 	<script id="fragment-shader" type="x-shader/x-fragment">
 	   	precision mediump float;
+	   	varying vec4 fColor;
 	   	void main() {
-	    	gl_FragColor = vec4( 1, 0.0, 0.0, 1.0 );
+	    	gl_FragColor = fColor;
+	    	//gl_FragColor = vec4( 0.0, 0.0, 0.0, 1.0 );
 	   	}
 	</script>
+	
+	<script id="grid-vertex-shader" type="x-shader/x-vertex">
+   		attribute vec4 vPosition;
 
+   		void main() {
+	   		gl_PointSize = 1.0;
+      		gl_Position = vPosition;
+   		}
+	</script>
+
+	<script id="grid-fragment-shader" type="x-shader/x-fragment">
+   		precision mediump float;
+
+   		void main() {
+      		gl_FragColor = vec4( 0.0, 0.0, 0.0, 1.0 );
+   		}
+	</script>
+
+	<script type="text/javascript" src="initShaders.js"></script>
+	<script type="text/javascript" src="shape2d.js"></script>
+	<script type="text/javascript" src="grid.js"></script>
+
+</head>
+<body>
 	<div style="float:left;"> 
-		<select>
-	  		<option value="connected">Connected</option>
-	  		<option value="disconnected">Disconnected</option>
+		<select id="mode">
+	  		<option value="1">Connected</option>
+	  		<option value="0">Disconnected</option>
 	  	</select>
 	  	<div>
-	  		R:<input type="number" id="r" min="0" max="255"/>
-	  		G:<input type="number" id="g" min="0" max="255"/>
-	  		B:<input type="number" id="b" min="0" max="255"/>
-	  		A:<input type="number" id="a" min="0" max="255"/>
+	  		R:<input type="number" id="r" min="-1" max="1" value="1.0"/>
+	  		G:<input type="number" id="g" min="0" max="1" value="0.0"/>
+	  		B:<input type="number" id="b" min="0" max="1" value="0.0"/>
+	  		A:<input type="number" id="a" min="0" max="1" value="1.0"/>
 	  	</div>
 	  	<div>
-	  		Show Vertices: <input type="checkbox" id="ShowVertices"/>
-	  		Show Grid Lines: <input type="checkbox" id="ShowGrid"/>
+	  		Show Vertices: <input type="checkbox" id="ShowVertices" onclick="showVertices()" />
+	  		Show Grid Lines: <input type="checkbox" id="ShowGrid" onclick="showGrid()" />
+	  		Snap to Grid: <input type="checkbox" id="SnapToGrid">
 	  	</div>
 	  	<div>
 	  		Save File: <input type="text" id="fileName"/>
 	  		<input type="button" id="save" value="save"/>
 	  	</div>
 	  	<div>
-	  		Load File: <input type="button" id="choseFile"/>
+	  		<input type="button" id="choseFile" value="Load File"/>
 	  		<p id="chosenFile">No file chosen</p>
 	  	</div>
 	  	<div style="border:solid;">
 	  		<p>Vertex Propreties:</p>
-	  		<p>Coordinates: <input type="number" id="coordX"/><input type="number" id="coordY"/></p>
+	  		<p>Coordinates: <input type="number" min="-1" max="1" id="coordX" style="width: 85px" /><input type="number" min="-1" max="1" id="coordY" style="width: 85px"/></p>
 	  		<p>
-	  			Color: <input type="number" id="r" min="0" max="255"/>
-	  					<input type="number" id="g" min="0" max="255"/>
-	  					<input type="number" id="b" min="0" max="255"/>
+	  			Color: <input type="number" id="r1" min="0" max="1.0"/>
+	  					<input type="number" id="g1" min="0" max="1.0"/>
+	  					<input type="number" id="b1" min="0" max="1.0"/>
+	  					<input type="number" id="a1" min="0" max="1.0"/>
+	  					<input type="button" value="Update!" onclick="setVertexInfo()">
 			</p>
 	  	</div>
 	</div>
 
-	<canvas style="border:solid; position:absolute; left:400px;" width="625" height="625"></canvas>
+	<canvas style="border:solid; position:absolute; left:400px;" width="625" height="625" id="canvas"></canvas>
 
 </body>
 </html>
