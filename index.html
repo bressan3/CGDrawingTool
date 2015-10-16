@@ -45,6 +45,7 @@
 	<script type="text/javascript" src="initShaders.js"></script>
 	<script type="text/javascript" src="shape2d.js"></script>
 	<script type="text/javascript" src="grid.js"></script>
+	<script type="text/javascript" src="file.js"></script>
 
 </head>
 <body>
@@ -66,10 +67,10 @@
 	  	</div>
 	  	<div>
 	  		Save File: <input type="text" id="fileName"/>
-	  		<input type="button" id="save" value="save"/>
+	  		<input type="button" id="save" value="save" onclick="writeFile()" />
 	  	</div>
 	  	<div>
-	  		<input type="button" id="choseFile" value="Load File"/>
+	  		<input type="file" id="choseFile" value="Load File" onclick="readFile()" />
 	  		<p id="chosenFile">No file chosen</p>
 	  	</div>
 	  	<div style="border:solid;">
