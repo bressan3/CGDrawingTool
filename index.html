@@ -43,7 +43,7 @@
 	</script>
 
 	<script type="text/javascript" src="initShaders.js"></script>
-	<script type="text/javascript" src="shape2d.js"></script>
+	<script type="text/javascript" src="interface.js"></script>
 	<script type="text/javascript" src="grid.js"></script>
 	<script type="text/javascript" src="file.js"></script>
 
@@ -66,12 +66,11 @@
 	  		Snap to Grid: <input type="checkbox" id="SnapToGrid">
 	  	</div>
 	  	<div>
-	  		Save File: <input type="text" id="fileName"/>
+	  		Save File: <input type="text" id="fileName" value="shape.txt"/>
 	  		<input type="button" id="save" value="save" onclick="writeFile()" />
 	  	</div>
 	  	<div>
 	  		<input type="file" id="choseFile" value="Load File" onclick="readFile()" />
-	  		<p id="chosenFile">No file chosen</p>
 	  	</div>
 	  	<div style="border:solid;">
 	  		<p>Vertex Propreties:</p>

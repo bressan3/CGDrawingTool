@@ -14,7 +14,7 @@ function writeFile(){
     }
 
     var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
-    var fileNameToSaveAs = "shape.txt";
+    var fileNameToSaveAs = document.getElementById("fileName").value;
     var downloadLink = document.createElement("a");
     downloadLink.download = fileNameToSaveAs;
     downloadLink.innerHTML = "Download File";
