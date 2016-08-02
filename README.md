@@ -8,4 +8,4 @@ Second Computer Graphics assignment. A Javascript graphics based tool for drawin
 
 - Clone the repo: `$git clone https://github.com/bressan3/CGDrawingTool.git`.
 - Open `index.html` using your favorite web browser!
-- Remind that saving a file might only work with **Google Chrome**.
+- Saving a file may only work with **Google Chrome**.
